@@ -7,11 +7,11 @@ module.exports.set = setProgress
 module.exports.get = getProgress
 
 function getProgress(name) {
-  var key = util.format('progress.%s:%s', id, name)
+  var key = util.format('%s.progress:%s', id, name)
   return name && !!ls.getItem(key)
 }
 
 function setProgress(name, value) {
-  var key = util.format('progress.%s:%s', id, name)
+  var key = util.format('%s.progress:%s', id, name)
   return name && ls.setItem(key, !!value ? '1' : '')
 }
