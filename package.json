@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lakenen/browser-workshopper-progress/issues"
   },
-  "homepage": "https://github.com/lakenen/browser-workshopper-progress"
+  "homepage": "https://github.com/lakenen/browser-workshopper-progress",
+  "dependencies": {
+    "slugify": "^0.1.0"
+  }
 }

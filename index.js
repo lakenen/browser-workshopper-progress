@@ -1,17 +1,29 @@
-var util = require('util')
+var slugify = require('slugify')
   , ls = window.localStorage
-  , id = process.env.workshopper_id || 'browser-workshopper'
+  , id = slugify(process.env.title || 'browser workshopper')
 
 module.exports = getProgress
-module.exports.set = setProgress
-module.exports.get = getProgress
+module.exports.set = set
+module.exports.get = get
+module.exports.setProgress = setProgress
+module.exports.getProgress = getProgress
+
+function get(key) {
+  key = id + '.' + key
+  return ls.getItem(key)
+}
+
+function set(key, val) {
+  key = id + '.' + key
+  return ls.setItem(key, val)
+}
 
 function getProgress(name) {
-  var key = util.format('%s.progress:%s', id, name)
-  return name && !!ls.getItem(key)
+  var key = 'progress:' + name
+  return name && !!get(key)
 }
 
 function setProgress(name, value) {
-  var key = util.format('%s.progress:%s', id, name)
-  return name && ls.setItem(key, !!value ? '1' : '')
+  var key = 'progress:' + name
+  return name && set(key, !!value ? '1' : '')
 }
